@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//estrutura para armazenar um documento
+//estrutura do tipo union para armazenar um documento
 typedef union documentos{
     char rg[15];
     char cpf[15];
@@ -14,21 +14,24 @@ typedef struct pessoa {
 }Pessoa;
 
 void dados_pessoais(Pessoa *p) {
-    /* função que preenche os dados de uma variável do tipo pessoa (struct) */
-    printf("Informe o nome: \t");
+    printf("Informe o nome: ");
     scanf(" %[^\n]", p->nome);
 
-    printf("\nInforme a idade: \t");
+    printf("Informe a idade: ");
     scanf("%d", &p->idade);
 
+    printf("\n");
+    
     int opcao;
 
     printf("Digite 1 para CPF ou 0 para RG\n");
     scanf("%d", &opcao);
 
-    if(opcao == 1) {
+    if (opcao == 1) {
+        printf("Informe o CPF: ");
         scanf(" %[^\n]", p->doc.cpf);
     } else {
+        printf("Informe o RG: ");
         scanf(" %[^\n]", p->doc.rg);
     }
 }
@@ -36,29 +39,13 @@ void dados_pessoais(Pessoa *p) {
 int main(void) {
 
     Pessoa *pessoa = malloc(sizeof(Pessoa));
+    
     dados_pessoais(pessoa); //a função recebe o endereço da variável
 
-    printf("CPF = %s \n RG = %s", pessoa->doc.cpf, pessoa->doc.rg);
+    printf("CPF = %s \nRG = %s", pessoa->doc.cpf, pessoa->doc.rg);
 
     free(pessoa); 
 
     return 0;
 
 }
-
-//estrutura union 
-// typedef union tipodados {
-//     int meu_int;
-//     float meu_float;
-// }Dados;
-
-// int main(void) {
-
-//     Dados uniao;
-//     printf("Digite os dados: \t");
-//     scanf("%f %d", &uniao.meu_int, &uniao.meu_float);
-
-//     printf("Os dados informados: meu_int = %d meu float = %f", uniao.meu_int, uniao.meu_float);
-
-//     return 0;
-// }
