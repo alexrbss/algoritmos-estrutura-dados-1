@@ -8,13 +8,13 @@ int main() {
 
     entrada = fopen("entrada_q3.txt", "r");
     if (entrada == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
+        printf("Erro ao abrir o arquivo de entrada.\n");
         return 1;
     }
 
     saida = fopen("saida_q3.txt", "w");
     if (saida == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
+        printf("Erro ao abrir o arquivo de saida.\n");
         fclose(entrada);
         return 1;
     }
